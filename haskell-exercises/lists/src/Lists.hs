@@ -1,5 +1,5 @@
 module Lists (member, union, intersection, difference,
-              insert, insertionSort,
+              insert, insertionSort, firsts,
               binaryToDecimal, toDecimal, toDec, decimal,
               binaryAdd) where
 
@@ -27,16 +27,17 @@ intersection (x:xs) ys
 
 
 difference:: [Int] -> [Int] -> [Int]
-difference [] xs = xs
+difference [] _ = []
 difference xs [] = xs
 difference (x:xs) (y:ys)
-  | null xs = []
   | member x (y:ys) = difference xs (y:ys)
   | otherwise = x : difference xs (y:ys)
 
 insert:: Int -> [Int] -> [Int]
 insert e [] = [e]
-insert e (x:xs) = e : x : xs
+insert e (x:xs)
+  | e == x || e < x = e : x : xs
+  | otherwise       = x : insert e xs
 
 insertionSort :: [Int] -> [Int]
 insertionSort [] = []
@@ -69,23 +70,36 @@ toDecimal base (x:xs) = x * base ^ length xs + toDecimal base xs
 toDec::Int -> String -> Int
 toDec _ "" = 0
 toDec 0 _ = 0
-toDec base str
+toDec base str = toDecimal base (map digitToInt str)
 
 
 -- Same as `toDec` But use a list comprehension
 
-
 decimal::Int -> String -> Int
-decimal  = error "Implement it"
+decimal _ [] = 0
+decimal base str = (x * base ^ length xs + decimal base (eraseFirstChar str))
+    where x:xs = map digitToInt str
 
+eraseFirstChar :: String -> String
+eraseFirstChar [] = []
+eraseFirstChar (_:xs) = xs
 
-firsts::[a] -> [[a]]
-firsts = error "Implement it"
+firsts :: [a] -> [[a]]
+firsts [] = []
+firsts (x:xs) = doFirsts (x:xs) (length (x:xs)) 1
 
+doFirsts :: [a] -> Int -> Int -> [[a]]
+doFirsts lst n m
+    | m > n = []
+    | otherwise = take m lst : doFirsts lst n (m + 1)
 
 -- Given two String that represents numbers in binary implement the 'binaryAdd' function
 -- DO NOT USE a predefined '+' operation
 
+binaryAdd :: String -> String -> String
+binaryAdd a b = toBinary(show (binaryToDecimal (map digitToInt a) + binaryToDecimal (map digitToInt b)))
 
-binaryAdd::String -> String -> String
-binaryAdd  = error "Implement it"
+toBinary :: String -> String
+toBinary "0" = "0"
+toBinary "1" = "1"
+toBinary n = toBinary (show (div (read n) 2)) ++ show (mod (read n) 2)
