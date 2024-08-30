@@ -14,11 +14,11 @@ main = do
        
 freq :: FilePath -> IO ()
 freq fileName = do
-   content <- readFile fileName
-   printLines $ reverse $ frequencies content
+  text <- readFile fileName
+  printLines $ reverse $ (frequencies text)
 
 printLines::[Frequency] -> IO ()
 printLines [] = return ()
-printLines ((n,c):xs) = do
-                         putStrLn $ show c ++ ": "++ show n
-                         printLines xs       
+printLines ((w, c) : fs) = do
+  putStrLn $ show c ++ ": " ++ show w
+  printLines fs

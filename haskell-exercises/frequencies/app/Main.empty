@@ -4,10 +4,21 @@ import Frequencies
 import System.Environment
 
 main :: IO ()
-main = error "Implement It"
+main = do
+   args <- getArgs
+   if null args then do
+       putStrLn "Please specify the filename"
+       return ()
+   else
+       freq (head args)
        
 freq :: FilePath -> IO ()
-freq fileName = error "Implement It"
+freq fileName = do
+  text <- readFile fileName
+  printLines frequencies text
 
 printLines::[Frequency] -> IO ()
-printLines [] = error "Implement it"
+printLines [] = return ()
+printLines (Frequency w c : fs) = do
+  putStrLn $ w ++ ": " ++ show c
+  printLines fs
