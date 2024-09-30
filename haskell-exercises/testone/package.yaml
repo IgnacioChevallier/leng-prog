@@ -1,0 +1,17 @@
+name: testone
+version: 1.0.0.0
+
+dependencies:
+  - base
+
+library:
+  exposed-modules: TestOne
+  source-dirs: src
+  ghc-options: -Wall -Wno-type-defaults
+
+tests:
+  test:
+    main: Test.hs
+    source-dirs: test
+    dependencies:
+      - hspec

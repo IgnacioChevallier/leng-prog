@@ -12,7 +12,7 @@
 9. [Slices, Vector, iter, HashMap, HOFs](classes/Class-08.slides.html)
 10. [Rc, Traits, Generics, Lifetimes, Unicode](classes/Class-09.slides.html)
 11. [Functional Programming in Java & new Features](classes/Class-10.slides.html)
-
+rc
 ### Trabajos Prácticos
 1. TP1:
     - [Fraction](haskell-exercises/fraction/README.md)  

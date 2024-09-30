@@ -41,7 +41,8 @@ insert e (x:xs)
 
 insertionSort :: [Int] -> [Int]
 insertionSort [] = []
-insertionSort xs = let
+insertionSort xs =
+  let
     low = lowerFinder (head xs) xs
     remaining = removeItem low xs
   in low : insertionSort remaining
@@ -103,3 +104,8 @@ toBinary :: String -> String
 toBinary "0" = "0"
 toBinary "1" = "1"
 toBinary n = toBinary (show (div (read n) 2)) ++ show (mod (read n) 2)
+
+toBinary :: Int -> [Int]
+toBinary 0 = [0]
+toBinary 1 = [1]
+toBinary n = toBinary (n `div` 2) : (n `mod` 2)
