@@ -5,15 +5,27 @@ pub struct User {
 }
 
 impl User {
-    pub fn new(name: &str, age: u32, weight: f32) -> Self { panic!("Implement me!") }
+    pub fn new(name: &str, age: u32, weight: f32) -> Self {
+        return User {name: name.to_string(), age, weight}
+    }
 
-    pub fn name(&self) -> &str { panic!("Implement me!") }
+    pub fn name(&self) -> &str {
+        return &self.name
+    }
 
-    pub fn age(&self) -> u32 { panic!("Implement me!") }
+    pub fn age(&self) -> u32 {
+        self.age
+    }
 
-    pub fn weight(&self) -> f32 { panic!("Implement me!") }
+    pub fn weight(&self) -> f32 {
+        self.weight
+    }
 
-    pub fn set_age(&mut self, new_age: u32) { panic!("Implement me!") }
+    pub fn set_age(&mut self, new_age: u32) {
+        self.age = new_age
+    }
 
-    pub fn set_weight(&mut self, new_weight: f32) { panic!("Implement me!") }
+    pub fn set_weight(&mut self, new_weight: f32) {
+        self.weight = new_weight
+    }
 }
